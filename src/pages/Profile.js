@@ -55,7 +55,7 @@ export function Profile() {
             {user && <h2>Welcome, {user.email}</h2>}
             <button onClick={logout}>Logout</button>
 
-            <CreateProduct setAllProducts={setAllProducts}/>
+            <CreateProduct />
         </div>
     );
 }

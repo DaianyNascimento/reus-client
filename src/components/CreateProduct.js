@@ -3,7 +3,7 @@ import { useState } from "react";
 import { API_BASE_URL } from "../consts";
 
 
-export function CreateProduct({ setAllProducts }){
+export function CreateProduct(){
 
         const [newProduct, setNewProduct] = useState({ title: "", description: "", image: "" });
 
@@ -21,10 +21,10 @@ export function CreateProduct({ setAllProducts }){
             const { data } = await axios.post(`${API_BASE_URL}/profile/`, newProduct);
            
             console.log(data);
-
+                /*
             setAllProducts((oldProducts) => {
             return [...oldProducts, data.product];
-            });
+            });*/
           } catch (error) {
             console.error("Error in updating the product list on the server!", error);
           }
