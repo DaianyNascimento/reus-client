@@ -8,7 +8,6 @@ import { CreateProduct } from "../components/CreateProduct";
 export function Profile() {
     const navigate = useNavigate();
     const { user, removeUserFromContext } = useContext(AuthContext);
-
     const [allProducts, setAllProducts] = useState([]);
 
     useEffect(() => {
@@ -17,24 +16,22 @@ export function Profile() {
         }
     }, [user, navigate]);
 
-
     useEffect(() => {
         async function fetchAllProducts() {
-          console.log("Fetching all products!");
-          try {
-            const { data } = await axios.get(`${API_BASE_URL}/allproducts`);
-            console.log(data)
-            //if (!data.todos) return;
-            //setAllProducts(data.todos);
-          } catch (err) {
-            console.log("We got an error");
-            console.error(err);
-            console.log(err.response.data);
-          }
+            console.log("Fetching all products!");
+            try {
+                const { data } = await axios.get(`${API_BASE_URL}/allproducts`);
+                console.log(data)
+                //if (!data.todos) return;
+                //setAllProducts(data.todos);
+            } catch (err) {
+                console.log("We got an error");
+                console.error(err);
+                console.log(err.response.data);
+            }
         }
         fetchAllProducts();
-      }, [navigate]);
-
+    }, [navigate]);
 
     const logout = async () => {
         try {
@@ -45,10 +42,8 @@ export function Profile() {
             console.log(err);
             alert("there was an error logging out");
         }
+    }
 
-        // CREATE PRODUCTS
-
-        
     return (
         <div>
             <h1>Profile Page</h1>
@@ -58,5 +53,4 @@ export function Profile() {
             <CreateProduct />
         </div>
     );
-}
 }
