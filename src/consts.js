@@ -7,6 +7,5 @@ export const API_BASE_URL =
 
 export async function getCsrfToken() {
     const { data } = await axios.get(API_BASE_URL + "/getCsrfToken");
-    console.log(data);
     axios.defaults.headers.post["X-CSRF-Token"] = data.csrfToken;
 }
