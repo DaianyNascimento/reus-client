@@ -16,6 +16,9 @@ export function LayoutComponent() {
             <nav>
                 {user ? (
                     <>
+                        <NavLink style={determineStyle} to="/">
+                            Home
+                        </NavLink>
                         <NavLink style={determineStyle} to="/profile">
                             Profile
                         </NavLink>
