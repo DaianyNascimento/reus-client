@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { API_BASE_URL } from "../consts";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthProviderWrapper";
+import { SingleProduct } from "../components/SingleProduct";
 import { CreateProduct } from "../components/CreateProduct";
-import { Delete } from "../components/DeleteButton";
+import { DeleteAllProductsButtons } from "../components/DeleteAllProductsButtons";
 import { Update } from "../components/UpdateButton";
-
 
 export function Profile() {
     const navigate = useNavigate();
@@ -37,8 +37,39 @@ export function Profile() {
         fetchAllProducts();
     }, [navigate]);
 
-    console.log("This is all products", allProducts)
-    
+    const updateSingleProduct = async (idToUpdate, updatedProduct) => {
+        try {
+            const { data } = await axios.put(`${API_BASE_URL}/products`, updatedProduct);
+            console.log(data);
+            setAllProducts((oldProducts) => {
+                return oldProducts.map((product) => {
+                    if (idToUpdate === product._id) {
+                        return updatedProduct;
+                    }
+                    return product;
+                });
+            });
+        } catch (error) {
+            console.error("Error in updating the product on the server!", error);
+        }
+    };
+
+    const deleteSingleProduct = async (idToDelete) => {
+        console.log(idToDelete);
+        try {
+            const { data } = await axios.delete(`${API_BASE_URL}/products/${idToDelete}`);
+            console.log(data);
+            setAllProducts((oldProducts) => {
+                return oldProducts.filter((product) => {
+                    return idToDelete !== product._id;
+                });
+            });
+        } catch (error) {
+            console.error("Error to delete the product on the server!", error);
+        }
+    };
+
+
     const logout = async () => {
         try {
             await axios.post(API_BASE_URL + "/auth/logout");
@@ -65,7 +96,20 @@ export function Profile() {
             </button>
             {formIsShown && <CreateProduct setAllProducts={setAllProducts} />}
 
-            <Delete setAllProducts={setAllProducts} />
+            {allProducts.map((product) => (
+                <SingleProduct
+                    key={product._id}
+                    product={product}
+                    updateSingleProduct={updateSingleProduct}
+                    deleteSingleProduct={deleteSingleProduct}
+                />
+            ))}
+
+            <DeleteAllProductsButtons
+                deleteSingleProduct={deleteSingleProduct}
+                allProducts={allProducts}
+                setAllProducts={setAllProducts}
+            />
             <Update setAllProducts={setAllProducts} />
 
         </div>
