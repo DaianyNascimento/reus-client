@@ -24,10 +24,10 @@ export function Profile() {
             console.log("Fetching all products!");
             try {
                 const { data } = await axios.get(`${API_BASE_URL}/allproducts`);
-                console.log(data)
+                console.log("This is data from Profile axios.get all ", data)
                 //if (!data) return;
                 setAllProducts(data);
-                console.log(allProducts, "This is all products")
+              
             } catch (err) {
                 console.log("We got an error");
                 console.error(err);
@@ -37,6 +37,8 @@ export function Profile() {
         fetchAllProducts();
     }, []);
 
+    console.log("This is all products", allProducts)
+    
     const logout = async () => {
         try {
             await axios.post(API_BASE_URL + "/auth/logout");
