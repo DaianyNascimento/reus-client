@@ -37,6 +37,8 @@ export function Profile() {
         fetchAllProducts();
     }, [navigate]);
 
+    console.log("This is all products", allProducts)
+    
     const logout = async () => {
         try {
             await axios.post(API_BASE_URL + "/auth/logout");

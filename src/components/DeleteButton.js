@@ -6,7 +6,7 @@ export function Delete({setAllProducts}){
 
 const deleteProduct = async (idToDelete) => {
     try {
-      const { data } = await axios.delete(`${API_BASE_URL}/profile/`, {
+      const { data } = await axios.delete(`${API_BASE_URL}/profile`, {
         id: idToDelete,
       });
       console.log(data);
