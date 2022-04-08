@@ -4,6 +4,9 @@ import { API_BASE_URL } from "../consts";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthProviderWrapper";
 import { CreateProduct } from "../components/CreateProduct";
+import { Delete } from "../components/DeleteButton";
+import { Update } from "../components/UpdateButton";
+
 
 export function Profile() {
     const navigate = useNavigate();
@@ -22,8 +25,9 @@ export function Profile() {
             try {
                 const { data } = await axios.get(`${API_BASE_URL}/allproducts`);
                 console.log(data)
-                //if (!data.todos) return;
-                //setAllProducts(data.todos);
+                //if (!data) return;
+                setAllProducts(data);
+                console.log(allProducts, "This is all products")
             } catch (err) {
                 console.log("We got an error");
                 console.error(err);
@@ -31,7 +35,7 @@ export function Profile() {
             }
         }
         fetchAllProducts();
-    }, [navigate]);
+    }, []);
 
     const logout = async () => {
         try {
@@ -50,7 +54,10 @@ export function Profile() {
             {user && <h2>Welcome, {user.email}</h2>}
             <button onClick={logout}>Logout</button>
 
-            <CreateProduct />
+            <CreateProduct setAllProducts = {setAllProducts}/>
+            <Delete setAllProducts = {setAllProducts}/>
+            <Update setAllProducts = {setAllProducts}/>
+
         </div>
     );
 }
