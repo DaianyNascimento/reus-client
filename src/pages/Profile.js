@@ -6,7 +6,6 @@ import { AuthContext } from "../context/AuthProviderWrapper";
 import { SingleProduct } from "../components/SingleProduct";
 import { CreateProduct } from "../components/CreateProduct";
 import { DeleteAllProductsButtons } from "../components/DeleteAllProductsButtons";
-import { Update } from "../components/UpdateButton";
 
 export function Profile() {
     const navigate = useNavigate();
@@ -37,23 +36,6 @@ export function Profile() {
         fetchAllProducts();
     }, [navigate]);
 
-    const updateSingleProduct = async (idToUpdate, updatedProduct) => {
-        try {
-            const { data } = await axios.put(`${API_BASE_URL}/products`, updatedProduct);
-            console.log(data);
-            setAllProducts((oldProducts) => {
-                return oldProducts.map((product) => {
-                    if (idToUpdate === product._id) {
-                        return updatedProduct;
-                    }
-                    return product;
-                });
-            });
-        } catch (error) {
-            console.error("Error in updating the product on the server!", error);
-        }
-    };
-
     const deleteSingleProduct = async (idToDelete) => {
         console.log(idToDelete);
         try {
@@ -68,7 +50,6 @@ export function Profile() {
             console.error("Error to delete the product on the server!", error);
         }
     };
-
 
     const logout = async () => {
         try {
@@ -92,7 +73,7 @@ export function Profile() {
             <button onClick={logout}>Logout</button>
 
             <button type="primary" onClick={toggleForm}>
-                {formIsShown ? 'Hide form' : 'Create new product'}
+                {formIsShown ? 'Cancel' : 'Create new product'}
             </button>
             {formIsShown && <CreateProduct setAllProducts={setAllProducts} />}
 
@@ -100,7 +81,7 @@ export function Profile() {
                 <SingleProduct
                     key={product._id}
                     product={product}
-                    updateSingleProduct={updateSingleProduct}
+                    setAllProducts={setAllProducts}
                     deleteSingleProduct={deleteSingleProduct}
                 />
             ))}
@@ -110,7 +91,6 @@ export function Profile() {
                 allProducts={allProducts}
                 setAllProducts={setAllProducts}
             />
-            <Update setAllProducts={setAllProducts} />
 
         </div>
     );
