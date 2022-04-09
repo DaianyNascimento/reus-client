@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { API_BASE_URL } from "../consts";
-import { useContext, useEffect } from "react";
+import { useContext} from "react";
 import { AuthContext } from "../context/AuthProviderWrapper";
 
 export function Home() {

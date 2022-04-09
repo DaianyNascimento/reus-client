@@ -14,7 +14,12 @@ export function Login() {
             const response = await axios.post(API_BASE_URL + "/auth/login", formState);
             addUserToContext(response.data.user);
             getCsrfToken();
-            navigate("/profile");
+            if(response.data.user.role === "donor"){
+                navigate("/profile");
+            } else {
+                navigate("/");
+            }
+            
         } catch (err) {
             setErrorState({ message: err.response.data.errorMessage });
         }
