@@ -34,7 +34,7 @@ export function Profile() {
             }
         }
         fetchAllProducts();
-    }, [navigate]);
+    }, []);
 
     const deleteSingleProduct = async (idToDelete) => {
         console.log(idToDelete);
