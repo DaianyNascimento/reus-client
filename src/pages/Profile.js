@@ -39,6 +39,7 @@ export function Profile() {
             console.log("Fetching all products to profile!");
             try {
                 const { data } = await axios.get(`${API_BASE_URL}/products`);
+                //console.log(data);
                 if (!data.currentDonorProducts) return;
                 setAllProducts(data.currentDonorProducts);
             } catch (err) {
@@ -48,7 +49,7 @@ export function Profile() {
             }
         }
         fetchAllProducts();
-    }, [navigate]);
+    }, []);
 
     useEffect(() => {
         async function fetchAllAlerts() {
@@ -113,7 +114,7 @@ export function Profile() {
                 allProducts={allProducts}
                 setAllProducts={setAllProducts}
             />
-            <h2>Alerts received</h2>
+            <h2>Alerts received:</h2>
             {alerts.map((alerts) => (
                 <ListAlerts
                     key={alerts._id}
