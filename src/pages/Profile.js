@@ -6,12 +6,15 @@ import { AuthContext } from "../context/AuthProviderWrapper";
 import { SingleProduct } from "../components/SingleProduct";
 import { CreateProduct } from "../components/CreateProduct";
 import { DeleteAllProductsButtons } from "../components/DeleteAllProductsButtons";
+import { ListAlerts } from "../components/ListAlerts";
+
 
 export function Profile() {
     const navigate = useNavigate();
     const { user, removeUserFromContext } = useContext(AuthContext);
     const [allProducts, setAllProducts] = useState([]);
     const [formIsShown, setFormIsShown] = useState(false);
+    const [alerts, setAlerts] = useState([]);
 
     useEffect(() => {
         if (!user) {
@@ -36,11 +39,28 @@ export function Profile() {
         fetchAllProducts();
     }, []);
 
+    useEffect(() => {
+        async function fetchAllAlerts() {
+            console.log("Fetching all alerts to profile!");
+            try {
+                const { data } = await axios.get(`${API_BASE_URL}/homeProducts`);
+                //console.log("This is data from alerts ", data)
+                if (!data.pendingAlerts) return;
+                setAlerts(data.pendingAlerts);
+            } catch (err) {
+                console.log("We got an error");
+                console.error(err);
+                console.log(err.response.data);
+            }
+        }
+        fetchAllAlerts();
+    }, []);
+
     const deleteSingleProduct = async (idToDelete) => {
         console.log(idToDelete);
         try {
             const { data } = await axios.delete(`${API_BASE_URL}/products/${idToDelete}`);
-            console.log(data);
+            console.log("this is data from delete", data);
             setAllProducts((oldProducts) => {
                 return oldProducts.filter((product) => {
                     return idToDelete !== product._id;
@@ -92,6 +112,13 @@ export function Profile() {
                 setAllProducts={setAllProducts}
             />
 
+            <h2>Alerts received</h2>
+            {alerts.map((alerts) => (
+                <ListAlerts
+                    key={alerts._id}
+                    alerts={alerts}
+                />
+            ))} 
         </div>
     );
 }

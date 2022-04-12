@@ -26,7 +26,7 @@ export function Home() {
         console.log("Fetching all products to homepage!");
         try {
             const { data } = await axios.get(`${API_BASE_URL}/homeProducts`);
-
+            
             if (!data.productsAvailable) return;
             setProducts(data.productsAvailable);
         } catch (err) {
