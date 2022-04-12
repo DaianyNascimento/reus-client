@@ -9,24 +9,35 @@ import { DeleteAllProductsButtons } from "../components/DeleteAllProductsButtons
 
 export function Profile() {
     const navigate = useNavigate();
-    const { user, removeUserFromContext } = useContext(AuthContext);
+    const { user, removeUserFromContext, addUserToContext } = useContext(AuthContext);
     const [allProducts, setAllProducts] = useState([]);
-    const [formIsShown, setFormIsShown] = useState(false);
 
     useEffect(() => {
-        if (!user) {
-            navigate("/login");
+        if (!user || typeof user == "undefined") {
+            const checkLoggedUser = async () => {
+                try {
+                    const userData = await axios.get(`${API_BASE_URL}/verifySession`);
+                    addUserToContext(userData.data.user);
+                    if (!userData.data.user) {
+                        navigate("/login");
+                    }
+                } catch (err) {
+                    console.log("We got an error");
+                    console.error(err);
+                    console.log(err.response.data);
+                }
+            }
+            checkLoggedUser();
         }
-    }, [user, navigate]);
+    }, [user, navigate, addUserToContext]);
 
     useEffect(() => {
-        async function fetchAllProducts() {
-            console.log("Fetching all products!");
+        const fetchAllProducts = async () => {
+            console.log("Fetching all products to profile!");
             try {
                 const { data } = await axios.get(`${API_BASE_URL}/products`);
-
-                if (!data.products) return;
-                setAllProducts(data.products);
+                if (!data.currentDonorProducts) return;
+                setAllProducts(data.currentDonorProducts);
             } catch (err) {
                 console.log("We got an error");
                 console.error(err);
@@ -34,20 +45,18 @@ export function Profile() {
             }
         }
         fetchAllProducts();
-    }, []);
+    }, [navigate]);
 
     const deleteSingleProduct = async (idToDelete) => {
-        console.log(idToDelete);
         try {
-            const { data } = await axios.delete(`${API_BASE_URL}/products/${idToDelete}`);
-            console.log(data);
+            await axios.delete(`${API_BASE_URL}/products/${idToDelete}`);
             setAllProducts((oldProducts) => {
                 return oldProducts.filter((product) => {
                     return idToDelete !== product._id;
                 });
             });
         } catch (error) {
-            console.error("Error to delete the product on the server!", error);
+            console.error("Error to delete product!", error);
         }
     };
 
@@ -58,13 +67,9 @@ export function Profile() {
             navigate("/login");
         } catch (err) {
             console.log(err);
-            alert("there was an error logging out");
+            alert("There was an error logging out");
         }
     }
-
-    const toggleForm = () => {
-        setFormIsShown(!formIsShown);
-    };
 
     return (
         <div>
@@ -72,10 +77,7 @@ export function Profile() {
             {user && <h2>Welcome, {user.email}</h2>}
             <button onClick={logout}>Logout</button>
 
-            <button type="primary" onClick={toggleForm}>
-                {formIsShown ? 'Cancel' : 'Create new product'}
-            </button>
-            {formIsShown && <CreateProduct setAllProducts={setAllProducts} />}
+            {<CreateProduct setAllProducts={setAllProducts} />}
 
             {allProducts.map((product) => (
                 <SingleProduct
@@ -91,7 +93,6 @@ export function Profile() {
                 allProducts={allProducts}
                 setAllProducts={setAllProducts}
             />
-
         </div>
     );
 }
