@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { API_BASE_URL, getCsrfToken } from "../consts";
 import { LoginForm } from "../components/LoginForm";
@@ -9,17 +9,19 @@ export function Login() {
     const [errorState, setErrorState] = useState();
     const navigate = useNavigate();
     const { addUserToContext } = useContext(AuthContext);
+
+    //window.location.reload(false);
+
     const login = async (formState) => {
         try {
             const response = await axios.post(API_BASE_URL + "/auth/login", formState);
             addUserToContext(response.data.user);
             getCsrfToken();
-            if(response.data.user.role === "donor"){
+            if (response.data.user.role === "donor") {
                 navigate("/profile");
             } else {
                 navigate("/");
             }
-            
         } catch (err) {
             setErrorState({ message: err.response.data.errorMessage });
         }
