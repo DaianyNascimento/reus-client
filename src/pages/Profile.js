@@ -44,7 +44,7 @@ export function Profile() {
             console.log("Fetching all alerts to profile!");
             try {
                 const { data } = await axios.get(`${API_BASE_URL}/homeProducts`);
-                console.log("This is data from alerts ", data)
+                //console.log("This is data from alerts ", data)
                 if (!data.pendingAlerts) return;
                 setAlerts(data.pendingAlerts);
             } catch (err) {
