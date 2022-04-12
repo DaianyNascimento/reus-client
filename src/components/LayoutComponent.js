@@ -19,9 +19,10 @@ export function LayoutComponent() {
                         <NavLink style={determineStyle} to="/">
                             Home
                         </NavLink>
-                        <NavLink style={determineStyle} to="/profile">
-                            Profile
-                        </NavLink>
+                        {user.role === "donor" &&
+                            <NavLink style={determineStyle} to="/profile">
+                                Profile
+                            </NavLink>}
                     </>
                 ) : (
                     <>
