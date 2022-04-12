@@ -6,11 +6,14 @@ import { AuthContext } from "../context/AuthProviderWrapper";
 import { SingleProduct } from "../components/SingleProduct";
 import { CreateProduct } from "../components/CreateProduct";
 import { DeleteAllProductsButtons } from "../components/DeleteAllProductsButtons";
+import { ListAlerts } from "../components/ListAlerts";
+
 
 export function Profile() {
     const navigate = useNavigate();
     const { user, removeUserFromContext, addUserToContext } = useContext(AuthContext);
     const [allProducts, setAllProducts] = useState([]);
+    const [alerts, setAlerts] = useState([]);
 
     useEffect(() => {
         if (!user || typeof user == "undefined") {
@@ -46,6 +49,23 @@ export function Profile() {
         }
         fetchAllProducts();
     }, [navigate]);
+
+    useEffect(() => {
+        async function fetchAllAlerts() {
+            console.log("Fetching all alerts to profile!");
+            try {
+                const { data } = await axios.get(`${API_BASE_URL}/homeProducts`);
+                //console.log("This is data from alerts ", data)
+                if (!data.pendingAlerts) return;
+                setAlerts(data.pendingAlerts);
+            } catch (err) {
+                console.log("We got an error");
+                console.error(err);
+                console.log(err.response.data);
+            }
+        }
+        fetchAllAlerts();
+    }, []);
 
     const deleteSingleProduct = async (idToDelete) => {
         try {
@@ -93,6 +113,13 @@ export function Profile() {
                 allProducts={allProducts}
                 setAllProducts={setAllProducts}
             />
+            <h2>Alerts received</h2>
+            {alerts.map((alerts) => (
+                <ListAlerts
+                    key={alerts._id}
+                    alerts={alerts}
+                />
+            ))} 
         </div>
     );
 }
