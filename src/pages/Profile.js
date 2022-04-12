@@ -40,6 +40,7 @@ export function Profile() {
             console.log("Fetching all products to profile!");
             try {
                 const { data } = await axios.get(`${API_BASE_URL}/products`);
+                //console.log(data);
                 if (!data.currentDonorProducts) return;
                 setAllProducts(data.currentDonorProducts);
             } catch (err) {
@@ -95,7 +96,7 @@ export function Profile() {
     return (
         <div>
             <h1>Profile Page</h1>
-            {user && <h2>Welcome, {user.email}</h2>}
+            {user && <h2>Welcome, donor: {user.email}</h2>}
             <button onClick={logout}>Logout</button>
 
             {<CreateProduct setAllProducts={setAllProducts} />}
@@ -114,13 +115,13 @@ export function Profile() {
                 allProducts={allProducts}
                 setAllProducts={setAllProducts}
             />
-            <h2>Alerts received</h2>
+            <h2>Alerts received:</h2>
             {alerts.map((alerts) => (
                 <ListAlerts
                     key={alerts._id}
                     alerts={alerts}
                 />
-            ))} 
+            ))}
         </div>
     );
 }
