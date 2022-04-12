@@ -95,7 +95,7 @@ export function Profile() {
     return (
         <div>
             <h1>Profile Page</h1>
-            {user && <h2>Welcome, {user.email}</h2>}
+            {user && <h2>Welcome, donor: {user.email}</h2>}
             <button onClick={logout}>Logout</button>
 
             {<CreateProduct setAllProducts={setAllProducts} />}
@@ -120,7 +120,7 @@ export function Profile() {
                     key={alerts._id}
                     alerts={alerts}
                 />
-            ))} 
+            ))}
         </div>
     );
 }
