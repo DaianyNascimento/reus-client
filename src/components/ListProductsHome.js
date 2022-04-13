@@ -33,9 +33,9 @@ export function ListProductsHome({ products }) {
     
         <Meta title = {products.title}/>
         <Descriptions column={{ xxl: 4, xl: 3, lg: 3, md: 3, sm: 2, xs: 1 }}>
-    <Descriptions.Item>{products.description}</Descriptions.Item>
+        <Descriptions.Item>{products.description}</Descriptions.Item>
 
-    </Descriptions>
+        </Descriptions>
         
     <Button className="btnStyle" type="primary" onClick = {sendingAnAlert}> I want this! </Button>
 
