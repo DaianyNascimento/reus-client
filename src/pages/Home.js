@@ -10,7 +10,7 @@ export function Home() {
   const { user, removeUserFromContext, addUserToContext } = useContext(AuthContext);
   const [products, setProducts] = useState([]);
 
-  useEffect(() => {
+  /*useEffect(() => {
     if (!user || typeof user == "undefined") {
       const checkLoggedUser = async () => {
         try {
@@ -27,7 +27,7 @@ export function Home() {
       }
       checkLoggedUser();
     }
-  }, [user, navigate, addUserToContext]);
+  }, [user, navigate, addUserToContext]);*/
 
   useEffect(() => {
     async function fetchAllProducts() {

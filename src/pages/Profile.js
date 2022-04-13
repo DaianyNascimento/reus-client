@@ -8,7 +8,6 @@ import { CreateProduct } from "../components/CreateProduct";
 import { DeleteAllProductsButtons } from "../components/DeleteAllProductsButtons";
 import { ListAlerts } from "../components/ListAlerts";
 
-
 export function Profile() {
     const navigate = useNavigate();
     const { user, removeUserFromContext, addUserToContext } = useContext(AuthContext);
@@ -16,6 +15,7 @@ export function Profile() {
     const [alerts, setAlerts] = useState([]);
 
     useEffect(() => {
+        console.log("user: ", user);
         if (!user || typeof user == "undefined") {
             const checkLoggedUser = async () => {
                 try {
@@ -40,7 +40,6 @@ export function Profile() {
             console.log("Fetching all products to profile!");
             try {
                 const { data } = await axios.get(`${API_BASE_URL}/products`);
-                //console.log(data);
                 if (!data.currentDonorProducts) return;
                 setAllProducts(data.currentDonorProducts);
             } catch (err) {
@@ -56,7 +55,7 @@ export function Profile() {
         async function fetchAllAlerts() {
             console.log("Fetching all alerts to profile!");
             try {
-                const { data } = await axios.get(`${API_BASE_URL}/homeProducts`);
+                const { data } = await axios.get(`${API_BASE_URL}/homeProducts/alerts`);
                 console.log("This is data from alerts ", data)
                 if (!data.pendingAlerts) return;
                 setAlerts(data.pendingAlerts);
