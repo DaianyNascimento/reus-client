@@ -1,13 +1,16 @@
 import axios from "axios";
 import { useState } from "react";
 import { API_BASE_URL } from "../consts";
+import { Form, Input, Button, Modal } from 'antd';
 
 export function EditProduct({ product, setAllProducts }) {
     const [editedProduct, setEditedProduct] = useState({ title: product.title, description: product.description, image: product.image });
-    const [formIsShown, setFormIsShown] = useState(false);
+
+    const [isModalVisible, setIsModalVisible] = useState(false);
+    const [form] = Form.useForm();
 
     const updateSingleProduct = async (idToUpdate, updatedProduct) => {
-        console.log(updatedProduct);
+        //console.log(updatedProduct);
         try {
             await axios.put(`${API_BASE_URL}/products`, updatedProduct);
             setAllProducts((oldProducts) => {
@@ -27,25 +30,33 @@ export function EditProduct({ product, setAllProducts }) {
         setEditedProduct({ ...editedProduct, [event.target.name]: event.target.value });
     };
 
-    const handleUpdateProduct = () => {
-        updateSingleProduct(product._id, { ...product, title: editedProduct.title, description: editedProduct.description, image: editedProduct.image });
-        toggleForm();
-    };
+    const showModal = () => {
+        setIsModalVisible(true);
+      };
 
-    const toggleForm = () => {
-        setFormIsShown(!formIsShown);
-    };
+
+      const handleOk = () => {
+        updateSingleProduct(product._id, { ...product, title: editedProduct.title, description: editedProduct.description, image: editedProduct.image });
+        setIsModalVisible(false);
+      };
+    
+      const handleCancel = () => {
+        setIsModalVisible(false);
+      };
 
     return (
         <div>
-            <button type="primary" onClick={toggleForm}>
-                {formIsShown ? 'Cancel' : 'Edit Product'}
-            </button>
+            <Button className="updateBtn btnStyle" type="primary" onClick={showModal}>Update Product</Button>
 
-            {formIsShown && (
-                <form>
-                    <label>Title:</label>
-                    <input
+            <Modal title="Update product" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel} 
+            footer = {[ <Button className="updateBtn btnStyle" type="primary" onClick={handleOk}>Update!</Button>,
+                <Button className="updateBtn btnStyle"key="back" onClick={handleCancel}>Return</Button>,
+
+                ]}>
+                
+                <Form form={form} layout="vertical" labelCol={{ span: 60,}} wrapperCol={{ span: 60,}} style={{padding: "24px"}}>
+                <Form.Item label="TITLE" required tooltip="This is a required field">
+                    <Input
                         type="text"
                         name="title"
                         autoComplete="title"
@@ -53,8 +64,9 @@ export function EditProduct({ product, setAllProducts }) {
                         value={editedProduct.title}
                         onChange={handleFormInput}
                     />
-                    <label>Description:</label>
-                    <input
+                    </Form.Item>
+                    <Form.Item label="DESCRIPTION" required tooltip="This is a required field">
+                    <Input.TextArea showCount maxLength={100}
                         type="text"
                         name="description"
                         autoComplete="description"
@@ -62,8 +74,10 @@ export function EditProduct({ product, setAllProducts }) {
                         value={editedProduct.description}
                         onChange={handleFormInput}
                     />
-                    <label>Image URL:</label>
-                    <input
+                    </Form.Item>
+
+                    <Form.Item label="IMAGE URL" required tooltip="This is a required field">
+                    <Input
                         type="text"
                         name="image"
                         autoComplete="image"
@@ -71,8 +85,11 @@ export function EditProduct({ product, setAllProducts }) {
                         value={editedProduct.image}
                         onChange={handleFormInput}
                     />
-                    <button onClick={handleUpdateProduct}>Update!</button>
-                </form>)}
+                   </Form.Item>
+                    
+                </Form>
+                </Modal>
+                
         </div>
     );
 }

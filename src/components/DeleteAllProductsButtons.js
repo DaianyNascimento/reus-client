@@ -1,3 +1,7 @@
+
+import { Button } from 'antd';
+
+
 export function DeleteAllProductsButtons({
   deleteSingleProduct,
   allProducts,
@@ -12,7 +16,7 @@ export function DeleteAllProductsButtons({
   };
   return (
     <div>
-      <button onClick={deleteAll}>Delete All!</button>
+      <Button type="primary" onClick={deleteAll}>Delete All!</Button>
     </div>
   );
 }
