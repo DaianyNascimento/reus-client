@@ -3,10 +3,36 @@ body {
   font-family: 'Quicksand',sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /*background-color: purple !important;*/
 }
 
 code {
   font-family: 'Quicksand',sans-serif;
+}
+
+.login-h1 {
+  font-size: 5vh;
+  font-weight: 600;
+  display: block;
+  margin: 5% auto;
+  padding: 5px 10px;
+  color: #DAB88B;
+}
+
+.login-form-container {
+  justify-content: center;
+}
+
+.login-form {
+  max-width: 300px;
+}
+
+.ant-col-rtl .login-form-forgot {
+  float: left;
+}
+
+.login-form-button {
+  width: 100%;
 }
 
 /* GENERAL*/

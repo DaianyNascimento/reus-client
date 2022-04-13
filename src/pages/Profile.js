@@ -9,7 +9,6 @@ import { DeleteAllProductsButtons } from "../components/DeleteAllProductsButtons
 import { ListAlerts } from "../components/ListAlerts";
 import { Button } from 'antd';
 
-
 export function Profile() {
   const navigate = useNavigate();
   const { user, removeUserFromContext, addUserToContext } =
@@ -18,6 +17,7 @@ export function Profile() {
   const [alerts, setAlerts] = useState([]);
 
   useEffect(() => {
+    console.log("user: ", user);
     if (!user || typeof user == "undefined") {
       const checkLoggedUser = async () => {
         try {
@@ -31,7 +31,7 @@ export function Profile() {
           console.error(err);
           console.log(err.response.data);
         }
-      };
+      }
       checkLoggedUser();
     }
   }, [user, navigate, addUserToContext]);
@@ -41,7 +41,6 @@ export function Profile() {
       console.log("Fetching all products to profile!");
       try {
         const { data } = await axios.get(`${API_BASE_URL}/products`);
-        //console.log(data);
         if (!data.currentDonorProducts) return;
         setAllProducts(data.currentDonorProducts);
       } catch (err) {
@@ -49,7 +48,7 @@ export function Profile() {
         console.error(err);
         console.log(err.response.data);
       }
-    };
+    }
     fetchAllProducts();
   }, []);
 
@@ -57,8 +56,8 @@ export function Profile() {
     async function fetchAllAlerts() {
       console.log("Fetching all alerts to profile!");
       try {
-        const { data } = await axios.get(`${API_BASE_URL}/homeProducts`);
-        // console.log("This is data from alerts ", data)
+        const { data } = await axios.get(`${API_BASE_URL}/homeProducts/alerts`);
+        console.log("This is data from alerts ", data)
         if (!data.pendingAlerts) return;
         setAlerts(data.pendingAlerts);
       } catch (err) {
@@ -108,7 +107,7 @@ export function Profile() {
 
       <h2 className="profTitle">Your Products</h2>
       <div className="productsListProfile">
-        
+
 
         {allProducts.map((product) => (
           <SingleProduct
@@ -118,14 +117,14 @@ export function Profile() {
             deleteSingleProduct={deleteSingleProduct}
           />
         ))}
-        </div>
+      </div>
 
-        <DeleteAllProductsButtons
-          deleteSingleProduct={deleteSingleProduct}
-          allProducts={allProducts}
-          setAllProducts={setAllProducts}
-        />
-    
+      <DeleteAllProductsButtons
+        deleteSingleProduct={deleteSingleProduct}
+        allProducts={allProducts}
+        setAllProducts={setAllProducts}
+      />
+
 
       <div className="alertsProfile">
         <h2 className="alertsProfile profTitle">Alerts received</h2>
