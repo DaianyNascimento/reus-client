@@ -9,3 +9,96 @@ code {
   font-family: 'Quicksand',sans-serif;
 }
 
+/* GENERAL*/
+
+.btnStyle{
+  background-color: pink !important;
+}
+
+
+/* PROFILE H*/
+.profTitle {
+  font-size: 40px;
+  font-family: 'Quicksand',sans-serif;
+  font-weight: 900 !important;
+  margin: 24px;
+}
+
+.profSubTitle {
+  font-size: 30px;
+  font-family: 'Quicksand',sans-serif;
+  font-weight: 500 !important;
+  margin-left: 30px;
+}
+
+
+/* ALERTS PROFILE*/
+.alertsProfile{
+  font-family: 'Quicksand',sans-serif;
+}
+
+.alertsProfile > div {
+  width: 50vw;
+}
+
+/* PRODUCTS CARD*/
+.divCard{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: aquamarine !important;
+  font-family: 'Quicksand',sans-serif;
+}
+
+.ant-card-body{
+  display: flex;
+  flex-direction: column;
+  font-family: 'Quicksand',sans-serif;
+}
+
+.divCardImg{
+  align-self: center;
+  margin-bottom: 3vh;
+}
+
+.divEditDeleteBtn{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Quicksand',sans-serif;
+}
+
+
+
+/* BTNS PROFILE*/
+.singleDeleteBtn{
+  margin: 5px;
+  font-family: 'Quicksand',sans-serif;
+}
+
+.updateBtn{
+  margin: 5px;
+  font-family: 'Quicksand',sans-serif;
+}
+
+.profLogOut{
+  margin-left: 30px;
+  margin-bottom: 24px;
+  font-family: 'Quicksand',sans-serif;
+}
+
+
+
+
+/* BTNS HOME*/
+
+.homeLogOut{
+  margin-left: 30px;
+  font-family: 'Quicksand',sans-serif;
+}
+
+.productsListProfile  {
+  display: flex;
+  flex-wrap: wrap;
+ 
+}
