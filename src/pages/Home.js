@@ -4,6 +4,8 @@ import { API_BASE_URL } from "../consts";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthProviderWrapper";
 import { ListProductsHome } from "../components/ListProductsHome";
+import { Button } from 'antd';
+
 
 export function Home() {
   const navigate = useNavigate();
@@ -59,9 +61,11 @@ export function Home() {
 
   return (
     <div>
-      <h1>Home Page</h1>
-      {user && <button onClick={logout}>Logout</button>}
-      <div>
+    <div className="homeHead">
+      <h2>Homepage</h2>
+      {user && <Button className="homeLogOut btnStyle" onClick={logout}>Logout</Button>}
+      </div>
+      <div className="productsListProfile">
         {products.map((products) => (
           <ListProductsHome key={products._id} products={products} />
         ))}

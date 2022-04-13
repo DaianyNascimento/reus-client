@@ -1,6 +1,9 @@
 import axios from "axios";
 import { useState } from "react";
 import { API_BASE_URL } from "../consts";
+import { Card, Col, Row, Button, Descriptions} from 'antd';
+
+const { Meta } = Card;
 
 export function ListProductsHome({ products }) {
 
@@ -21,11 +24,26 @@ export function ListProductsHome({ products }) {
 
     return (
         <div>
-            <h2>{products.title}</h2>
-            <p>{products.description}</p>
-            <img src={products.image} alt={products.title} />
+        <Row style={{ width: '100%', justifyContent: 'center' }}>
+        <Col>
+        <Card hoverable style={{ width: 230, height: 300, margin: 10 }}>
+      
+        <img className="divCardImg" src={products.image} alt={products.title} height={100}/>
+        
+    
+        <Meta title = {products.title}/>
+        <Descriptions column={{ xxl: 4, xl: 3, lg: 3, md: 3, sm: 2, xs: 1 }}>
+    <Descriptions.Item>{products.description}</Descriptions.Item>
 
-            <button onClick = {sendingAnAlert}>I want this!</button>
+    </Descriptions>
+        
+    <Button className="btnStyle" type="primary" onClick = {sendingAnAlert}> I want this! </Button>
+
+    </Card>
+    </Col>
+
+    </Row>     
         </div>
     );
 }
+
