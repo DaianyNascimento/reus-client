@@ -62,7 +62,8 @@ export function Home() {
     <div>
     <div className="homeHead">
       <h2 className="homeHeadTitle">REUS</h2>
-      {user && <Button className="homeLogOut btnStyle" onClick={logout}>Logout</Button>}
+      {user && 
+      <Button className="homeLogOut btnStyle" type="primary" onClick={logout}>Logout</Button>}
 
       </div>
       <div className="productsListProfile">

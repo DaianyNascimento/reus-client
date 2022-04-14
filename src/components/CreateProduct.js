@@ -46,8 +46,8 @@ export function CreateProduct({ setAllProducts }) {
 
   return (
     <div>
-      <Button className="btnStyle" type="primary" onClick={toggleForm}>
-        {formIsShown ? "Cancel" : "Create new product"}
+      <Button className="btnStyle createBtn1" type="primary" onClick={toggleForm}>
+        {formIsShown ? "Cancel" : "Create a new product"}
       </Button>
 
       {formIsShown && (
@@ -63,7 +63,7 @@ export function CreateProduct({ setAllProducts }) {
               type="text"
               name="title"
               autoComplete="title"
-              placeholder="product title"
+              placeholder=""
               value={newProduct.title}
               onChange={handleFormInput}
             />
@@ -79,7 +79,7 @@ export function CreateProduct({ setAllProducts }) {
               type="text"
               name="description"
               autoComplete="description"
-              placeholder="product description"
+              placeholder=""
               value={newProduct.description}
               onChange={handleFormInput}
             />
@@ -93,13 +93,13 @@ export function CreateProduct({ setAllProducts }) {
               type="text"
               name="image"
               autoComplete="image"
-              placeholder="product image"
+              placeholder=""
               value={newProduct.image}
               onChange={handleFormInput}
             />
           </Form.Item>
           <Button className="btnStyle" type="primary" onClick={handleAddNewProduct}>
-            Create product!
+            Create!
           </Button>
         </Form>
       )}
