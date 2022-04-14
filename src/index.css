@@ -17,6 +17,8 @@ code {
   margin: 5% auto;
   padding: 5px 10px;
   color: #DAB88B;
+  text-align: center;
+  align-items: center;
 }
 
 .login-form-container {
