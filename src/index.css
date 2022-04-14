@@ -3,18 +3,20 @@ body {
   font-family: 'Quicksand',sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /*background-color: purple !important;*/
+  background-color: #F3E9DD !important;
 }
 
 code {
   font-family: 'Quicksand',sans-serif;
 }
 
+/*LOGIN*/
+
 .login-h1 {
   font-size: 5vh;
   font-weight: 600;
   display: block;
-  margin: 5% auto;
+  margin: 5% 25%;
   padding: 5px 10px;
   color: #DAB88B;
   text-align: center;
@@ -40,25 +42,80 @@ code {
 /* GENERAL*/
 
 .btnStyle{
-  background-color: pink !important;
+  background-color: #DAB88B !important;
+  border-style: none !important;
+  font-family: 'Quicksand',sans-serif!important;
+  font-size: 2.6vh !important;
+  font-weight: 600 !important;
 }
 
+/*HOME*/
 
+.homeHead{
+  display: flex;
+}
+
+.homeHeadTitle{
+  font-size: 13vh;
+  font-weight: 600;
+  margin: 5% auto;
+  padding: 5px 10px;
+  color: #DAB88B;
+  border: 10px solid #FDF6EC;
+}
+
+.ant-layout-header {
+  height: 64px;
+  padding: 0 50px;
+  line-height: 64px;
+  background: #F3E9DD !important;
+}
+
+.ant-menu{
+  background: #DAB88B !important;
+  font-family: 'Quicksand',sans-serif!important;
+  font-size: 3vh !important;
+  font-weight: 800 !important;
+}
+
+.ant-menu :hover{
+  background-color: #DAB88B !important;
+}
+  
 /* PROFILE H*/
+
+.profileHead{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  align-items: center;
+  margin-left: 7%;
+  margin-right: 7%;
+  margin-top: 3%;
+}
 .profTitle {
-  font-size: 40px;
+  font-size: 5vh;
   font-family: 'Quicksand',sans-serif;
-  font-weight: 900 !important;
-  margin: 24px;
+  font-weight: 800 !important;
+  color: #DAB88B;
 }
 
 .profSubTitle {
-  font-size: 30px;
+  font-size: 4vh;
   font-family: 'Quicksand',sans-serif;
-  font-weight: 500 !important;
-  margin-left: 30px;
+  font-weight: 800 !important;
+  color: #DAB88B;
 }
 
+/* Create Products PROFILE*/
+
+.createProdDiv{
+  display: flex;
+  justify-content: space-between;
+  align-self: center;
+  margin-left: 20vw;
+  margin-top: 3vh;
+}
 
 /* ALERTS PROFILE*/
 .alertsProfile{
@@ -74,7 +131,7 @@ code {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: aquamarine !important;
+  background-color: #FDF6EC !important;
   font-family: 'Quicksand',sans-serif;
 }
 
@@ -96,6 +153,16 @@ code {
   font-family: 'Quicksand',sans-serif;
 }
 
+.productsListProfile  {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.ant-card-meta-title{
+  font-family: 'Quicksand',sans-serif !important;
+  font-size: 20px !important;
+  font-weight: 600 !important;
+}
 
 
 /* BTNS PROFILE*/
@@ -115,9 +182,6 @@ code {
   font-family: 'Quicksand',sans-serif;
 }
 
-
-
-
 /* BTNS HOME*/
 
 .homeLogOut{
@@ -125,8 +189,34 @@ code {
   font-family: 'Quicksand',sans-serif;
 }
 
-.productsListProfile  {
-  display: flex;
-  flex-wrap: wrap;
- 
+.btnWant{
+  margin-top: 10%;
+  margin-bottom: 10%;
+}
+
+/*Modal Info*/
+
+.ant-modal-confirm .ant-modal-body{
+  background-color: #FDF6EC !important;
+  
+}
+
+.ant-modal-confirm-info .ant-modal-confirm-body > .anticon{
+  color: #B7CADB !important;
+}
+
+.ant-modal-confirm-body .ant-modal-confirm-content {
+  margin-top: 8px !important;
+  color: rgba(0, 0, 0, 0.85) !important;
+  font-size: 16px !important;
+}
+
+.ant-btn-primary {
+  color: #fff;
+  background-color: #DAB88B !important;
+  font-weight: 600 !important;
+  border-style: none !important;
+  font-family: 'Quicksand',sans-serif!important;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
 }

@@ -49,8 +49,9 @@ export function EditProduct({ product, setAllProducts }) {
             <Button className="updateBtn btnStyle" type="primary" onClick={showModal}>Update Product</Button>
 
             <Modal title="Update product" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel} 
-            footer = {[ <Button className="updateBtn btnStyle" type="primary" onClick={handleOk}>Update!</Button>,
-                <Button className="updateBtn btnStyle"key="back" onClick={handleCancel}>Return</Button>,
+            footer = {[ 
+            <Button className="updateBtn btnStyle" type="primary" onClick={handleOk}>Update!</Button>,
+            <Button className="updateBtn btnStyle" key="back" onClick={handleCancel}>Return</Button>,
 
                 ]}>
                 

@@ -2,16 +2,18 @@ import axios from "axios";
 import { useState, useContext } from "react";
 import { AuthContext } from "../context/AuthProviderWrapper";
 import { API_BASE_URL } from "../consts";
-import { Card, Col, Row, Button, Descriptions } from 'antd';
+
+import { Card, Col, Row, Button, Descriptions, Modal} from 'antd';
 import { useNavigate } from "react-router-dom";
 const { Meta } = Card;
 
 export function ListProductsHome({ products }) {
+  
   const [newAlert, setNewAlert] = useState([]);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const sendingAnAlert = async () => {
+      const sendingAnAlert = async () => {
     if (!user) {
       alert("Please login to request a product!");
       navigate("/login");
@@ -31,28 +33,36 @@ export function ListProductsHome({ products }) {
     }
   }
 
-  return (
-    <div>
-      <Row style={{ width: '100%', justifyContent: 'center' }}>
+        function info() {
+          Modal.info({
+            content: (
+              <div>
+                <h3>{products.title}</h3>
+                <p>{products.description}</p>
+              </div>
+            ),
+            onOk() {},
+          });
+        }
+
+
+
+    return (
+        <div>
+        <Row style={{ width: '100%', justifyContent: 'center' }}>
         <Col>
-          <Card hoverable style={{ width: 230, height: 300, margin: 10 }}>
-
-            <img className="divCardImg" src={products.image} alt={products.title} height={100} />
-
-
-            <Meta title={products.title} />
-            <Descriptions column={{ xxl: 4, xl: 3, lg: 3, md: 3, sm: 2, xs: 1 }}>
-              <Descriptions.Item>{products.description}</Descriptions.Item>
-
-            </Descriptions>
-
-            <Button className="btnStyle" type="primary" onClick={sendingAnAlert}> I want this! </Button>
-
-          </Card>
+        <Card hoverable style={{ width: 230, height: 300, margin: 10 }}>
+      
+        <img className="divCardImg" src={products.image} alt={products.title} height={100}/>
+        
+        <Meta className="homeCardTitle" title = {products.title}/>
+        <Button className="btnStyle btnWant" type="primary" onClick = {sendingAnAlert}> I want this! </Button>
+        <Button className="btnStyle" type="primary" onClick={info}>Info</Button>
+        </Card>
         </Col>
+    </Row>     
+        </div>
+    );
 
-      </Row>
-    </div>
-  );
 }
 

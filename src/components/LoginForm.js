@@ -25,8 +25,8 @@ export function LoginForm({
 
     return (
         <div className="login-form-container">
-            <Row type="flex" justify="center" align="middle" style={{ minHeight: '80vh' }}>
-                <Col span={4} >
+            <Row type="flex" justify="center" align="middle" style={{ minHeight: '90vh' }}>
+                <Col span={10} >
                     <h1 className="login-h1">Login</h1>
                     <Form
                         name="normal_login"
@@ -47,8 +47,8 @@ export function LoginForm({
                             ]}
                         >
                             <Select labelInValue onChange={handleFormState}>
-                                <Select.Option name="role" value="donor">donor</Select.Option>
-                                <Select.Option name="role" value="donee">donee</Select.Option>
+                                <Select.Option name="role" value="donor">Donor</Select.Option>
+                                <Select.Option name="role" value="donee">Donee</Select.Option>
                             </Select>
                         </Form.Item>
                         <Form.Item
@@ -104,7 +104,7 @@ export function LoginForm({
                             >
                                 Log in
                             </Button>
-                            Or <a style={{ color: '#DAB88B' }} href="/signup">register now!</a>
+                            or <a style={{ color: '#DAB88B' }} href="/signup">register now!</a>
                         </Form.Item>
                     </Form>
                 </Col>

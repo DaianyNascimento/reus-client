@@ -60,9 +60,10 @@ export function Home() {
 
   return (
     <div>
-      <div className="homeHead">
-        <h1>REUS</h1>
-        {user && <Button className="homeLogOut btnStyle" onClick={logout}>Logout</Button>}
+    <div className="homeHead">
+      <h2 className="homeHeadTitle">REUS</h2>
+      {user && <Button className="homeLogOut btnStyle" onClick={logout}>Logout</Button>}
+
       </div>
       <div className="productsListProfile">
         {products.map((products) => (
