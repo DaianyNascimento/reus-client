@@ -51,7 +51,7 @@ export function ListProductsHome({ products }) {
         <div>
         <Row style={{ width: '100%', justifyContent: 'center' }}>
         <Col>
-        <Card hoverable style={{ width: 230, height: 300, margin: 10 }}>
+        <Card hoverable style={{ width: 200, height: 300, margin: 12 }}>
       
         <img className="divCardImg" src={products.image} alt={products.title} height={100}/>
         
