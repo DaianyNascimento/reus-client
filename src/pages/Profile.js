@@ -8,6 +8,7 @@ import { CreateProduct } from "../components/CreateProduct";
 import { DeleteAllProductsButtons } from "../components/DeleteAllProductsButtons";
 import { ListAlerts } from "../components/ListAlerts";
 import { Button } from 'antd';
+import {SmileOutlined} from '@ant-design/icons';
 
 export function Profile() {
   const navigate = useNavigate();
@@ -96,16 +97,18 @@ export function Profile() {
   return (
     <div>
       <div className="profileHead">
-        <h1 className="profTitle">Profile</h1>
-        {user && <h2 className="profSubTitle">Welcome, {user.email}</h2>}
+        {user && <h2 className="profTitle">Welcome, {user.email} <SmileOutlined/></h2>}
         <Button className="profLogOut btnStyle" type="primary" onClick={logout}>
           Logout
         </Button>
       </div>
-
+      
+      <div className="createProdDiv">
       {<CreateProduct setAllProducts={setAllProducts} />}
+      </div>
+      
 
-      <h2 className="profTitle">Your Products</h2>
+      <h2 className="profSubTitle">Your Products</h2>
       <div className="productsListProfile">
 
 

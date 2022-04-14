@@ -1,12 +1,12 @@
 import axios from "axios";
 import { useState } from "react";
 import { API_BASE_URL } from "../consts";
-import { Card, Col, Row, Button, Descriptions} from 'antd';
+import { Card, Col, Row, Button, Descriptions, Modal} from 'antd';
 
 const { Meta } = Card;
 
 export function ListProductsHome({ products }) {
-
+  
     const [newAlert, setNewAlert] = useState([]);
 
         const sendingAnAlert = async () => {
@@ -22,6 +22,20 @@ export function ListProductsHome({ products }) {
             }
         }
 
+        function info() {
+          Modal.info({
+            content: (
+              <div>
+                <h3>{products.title}</h3>
+                <p>{products.description}</p>
+              </div>
+            ),
+            onOk() {},
+          });
+        }
+
+
+
     return (
         <div>
         <Row style={{ width: '100%', justifyContent: 'center' }}>
@@ -30,18 +44,11 @@ export function ListProductsHome({ products }) {
       
         <img className="divCardImg" src={products.image} alt={products.title} height={100}/>
         
-    
-        <Meta title = {products.title}/>
-        <Descriptions column={{ xxl: 4, xl: 3, lg: 3, md: 3, sm: 2, xs: 1 }}>
-        <Descriptions.Item>{products.description}</Descriptions.Item>
-
-        </Descriptions>
-        
-    <Button className="btnStyle" type="primary" onClick = {sendingAnAlert}> I want this! </Button>
-
-    </Card>
-    </Col>
-
+        <Meta className="homeCardTitle" title = {products.title}/>
+        <Button className="btnStyle btnWant" type="primary" onClick = {sendingAnAlert}> I want this! </Button>
+        <Button className="btnStyle" type="primary" onClick={info}>Info</Button>
+        </Card>
+        </Col>
     </Row>     
         </div>
     );

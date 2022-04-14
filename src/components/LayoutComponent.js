@@ -1,41 +1,41 @@
 import { useContext } from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { AuthContext } from "../context/AuthProviderWrapper";
+import { Layout, Menu } from 'antd';
+import {HomeOutlined, FormOutlined, IdcardOutlined, KeyOutlined} from '@ant-design/icons';
+
+const { Header } = Layout;
+
+
 
 export function LayoutComponent() {
     const { user } = useContext(AuthContext);
 
-    const determineStyle = ({ isActive }) => {
-        return {
-            textDecoration: isActive ? "underline" : "none",
-        };
-    };
-
     return (
         <div>
-            <nav>
+        
+        <Header className="header">
+        <nav>
+                <Menu mode="horizontal" theme="dark">
                 {user ? (
                     <>
-                        <NavLink style={determineStyle} to="/">
-                            Home
-                        </NavLink>
-                        {user.role === "donor" &&
-                            <NavLink style={determineStyle} to="/profile">
-                                Profile
-                            </NavLink>}
+                    <Menu.Item  key="1"><a className="menuItem" href="/" target="_self" rel="noreferrer"> <HomeOutlined /> HOME</a></Menu.Item>
+                    {user.role === "donor" &&
+                    <Menu.Item className="menuItem" key="2"><a href="/profile"  target="_self" rel="noreferrer"><IdcardOutlined /> PROFILE</a></Menu.Item>}
                     </>
-                ) : (
+                    ) : (
                     <>
-                        <NavLink style={determineStyle} to="/login">
-                            Login
-                        </NavLink>
-                        <NavLink style={determineStyle} to="/signup">
-                            Signup
-                        </NavLink>
+                    <Menu.Item className="menuItem" key="3"><a className="menuItem" href="/login" target="_self" rel="noreferrer"> <KeyOutlined /> LOGIN</a></Menu.Item>
+                    <Menu.Item className="menuItem" key="4"><a href="/signup"  target="_self" rel="noreferrer"><FormOutlined /> SIGNUP</a></Menu.Item>
                     </>
                 )}
-            </nav>
-            <Outlet />
+                </Menu>
+                </nav>
+        </Header>
+
+        
+            
+        <Outlet />
         </div>
-    );
+    )
 }
