@@ -6,20 +6,19 @@ import { AuthContext } from "../context/AuthProviderWrapper";
 import { ListProductsHome } from "../components/ListProductsHome";
 import { Button } from 'antd';
 
-
 export function Home() {
   const navigate = useNavigate();
   const { user, removeUserFromContext, addUserToContext } = useContext(AuthContext);
   const [products, setProducts] = useState([]);
 
-  /*useEffect(() => {
+  useEffect(() => {
     if (!user || typeof user == "undefined") {
       const checkLoggedUser = async () => {
         try {
           const userData = await axios.get(`${API_BASE_URL}/verifySession`);
           addUserToContext(userData.data.user);
           if (!userData.data.user) {
-            navigate("/login");
+            navigate("/");
           }
         } catch (err) {
           console.log("We got an error");
@@ -29,7 +28,7 @@ export function Home() {
       }
       checkLoggedUser();
     }
-  }, [user, navigate, addUserToContext]);*/
+  }, [user, navigate, addUserToContext]);
 
   useEffect(() => {
     async function fetchAllProducts() {
@@ -64,6 +63,7 @@ export function Home() {
     <div className="homeHead">
       <h2 className="homeHeadTitle">REUS</h2>
       {user && <Button className="homeLogOut btnStyle" onClick={logout}>Logout</Button>}
+
       </div>
       <div className="productsListProfile">
         {products.map((products) => (

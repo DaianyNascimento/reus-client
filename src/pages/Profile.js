@@ -12,13 +12,11 @@ import {SmileOutlined} from '@ant-design/icons';
 
 export function Profile() {
   const navigate = useNavigate();
-  const { user, removeUserFromContext, addUserToContext } =
-    useContext(AuthContext);
+  const { user, removeUserFromContext, addUserToContext } = useContext(AuthContext);
   const [allProducts, setAllProducts] = useState([]);
   const [alerts, setAlerts] = useState([]);
 
   useEffect(() => {
-    console.log("user: ", user);
     if (!user || typeof user == "undefined") {
       const checkLoggedUser = async () => {
         try {
@@ -58,7 +56,6 @@ export function Profile() {
       console.log("Fetching all alerts to profile!");
       try {
         const { data } = await axios.get(`${API_BASE_URL}/homeProducts/alerts`);
-        console.log("This is data from alerts ", data)
         if (!data.pendingAlerts) return;
         setAlerts(data.pendingAlerts);
       } catch (err) {
@@ -111,7 +108,6 @@ export function Profile() {
       <h2 className="profSubTitle">Your Products</h2>
       <div className="productsListProfile">
 
-
         {allProducts.map((product) => (
           <SingleProduct
             key={product._id}
@@ -127,7 +123,6 @@ export function Profile() {
         allProducts={allProducts}
         setAllProducts={setAllProducts}
       />
-
 
       <div className="alertsProfile">
         <h2 className="alertsProfile profTitle">Alerts received</h2>

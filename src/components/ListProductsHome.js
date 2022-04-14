@@ -1,26 +1,37 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AuthContext } from "../context/AuthProviderWrapper";
 import { API_BASE_URL } from "../consts";
-import { Card, Col, Row, Button, Descriptions, Modal} from 'antd';
 
+import { Card, Col, Row, Button, Descriptions, Modal} from 'antd';
+import { useNavigate } from "react-router-dom";
 const { Meta } = Card;
 
 export function ListProductsHome({ products }) {
   
-    const [newAlert, setNewAlert] = useState([]);
+  const [newAlert, setNewAlert] = useState([]);
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-        const sendingAnAlert = async () => {
-            console.log(products);
-            try {
-              const { data } = await axios.post(`${API_BASE_URL}/homeProducts/${products._id}`, newAlert);
-              console.log(data);
-              setNewAlert((oldAlerts) => {
-                return [...oldAlerts, data.alert];
-              });
-            } catch (error) {
-              console.log("Error in updating the alert list on the server!", error);
-            }
-        }
+      const sendingAnAlert = async () => {
+    if (!user) {
+      alert("Please login to request a product!");
+      navigate("/login");
+    } else if (user.role === "donor") {
+      alert("As a donor, you can't request a product!");
+    }
+
+    try {
+      const { data } = await axios.post(`${API_BASE_URL}/homeProducts/${products._id}`, newAlert);
+      setNewAlert((oldAlerts) => {
+        return [...oldAlerts, data.alert];
+      });
+
+      alert("Thanks! The donor will receive a notification.");
+    } catch (error) {
+      console.log("Error in updating the alert list on the server!", error);
+    }
+  }
 
         function info() {
           Modal.info({
@@ -52,5 +63,6 @@ export function ListProductsHome({ products }) {
     </Row>     
         </div>
     );
+
 }
 

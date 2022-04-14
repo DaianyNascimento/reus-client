@@ -1,4 +1,3 @@
-
 import { createContext, useState } from "react";
 export const AuthContext = createContext();
 
@@ -6,7 +5,7 @@ export function AuthProviderWrapper(props) {
     const [user, setUser] = useState(null);
 
     const addUserToContext = (newUser) => {
-        if (user !== null) return;
+        if (user) return;
         setUser(newUser);
     };
 
