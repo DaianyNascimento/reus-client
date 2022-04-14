@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
 import { API_BASE_URL, getCsrfToken } from "../consts";
 import { LoginForm } from "../components/LoginForm";
