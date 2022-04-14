@@ -13,7 +13,6 @@ export function Signup() {
             await axios.post(API_BASE_URL + "/auth/signup", formState);
             navigate("/login");
         } catch (err) {
-            //console.log(err.response.data);
             setErrorState({ message: err.response.data.errorMessage });
         }
     };

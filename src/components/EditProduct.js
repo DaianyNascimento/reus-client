@@ -10,7 +10,6 @@ export function EditProduct({ product, setAllProducts }) {
     const [form] = Form.useForm();
 
     const updateSingleProduct = async (idToUpdate, updatedProduct) => {
-        //console.log(updatedProduct);
         try {
             await axios.put(`${API_BASE_URL}/products`, updatedProduct);
             setAllProducts((oldProducts) => {
@@ -32,65 +31,67 @@ export function EditProduct({ product, setAllProducts }) {
 
     const showModal = () => {
         setIsModalVisible(true);
-      };
+    };
 
 
-      const handleOk = () => {
+    const handleOk = () => {
         updateSingleProduct(product._id, { ...product, title: editedProduct.title, description: editedProduct.description, image: editedProduct.image });
         setIsModalVisible(false);
-      };
-    
-      const handleCancel = () => {
+    };
+
+    const handleCancel = () => {
         setIsModalVisible(false);
-      };
+    };
 
     return (
         <div>
             <Button className="updateBtn btnStyle" type="primary" onClick={showModal}>Update Product</Button>
+
 
             <Modal title="Update" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel} 
             footer = {[ 
             <Button className="updateBtn btnStyle" type="primary" onClick={handleOk}>Update!</Button>,
             <Button className="updateBtn btnStyle" type="primary" key="back" onClick={handleCancel}>Return</Button>,
 
+
                 ]}>
-                
-                <Form form={form} layout="vertical" labelCol={{ span: 60,}} wrapperCol={{ span: 60,}} style={{padding: "24px"}}>
-                <Form.Item label="TITLE" required tooltip="This is a required field">
-                    <Input
-                        type="text"
-                        name="title"
-                        autoComplete="title"
-                        placeholder="product title"
-                        value={editedProduct.title}
-                        onChange={handleFormInput}
-                    />
+
+                <Form form={form} layout="vertical" labelCol={{ span: 60, }} wrapperCol={{ span: 60, }} style={{ padding: "24px" }}>
+                    <Form.Item label="TITLE" required tooltip="This is a required field">
+                        <Input
+                            type="text"
+                            name="title"
+                            autoComplete="title"
+                            placeholder="product title"
+                            value={editedProduct.title}
+                            onChange={handleFormInput}
+                        />
                     </Form.Item>
                     <Form.Item label="DESCRIPTION" required tooltip="This is a required field">
-                    <Input.TextArea showCount maxLength={100}
-                        type="text"
-                        name="description"
-                        autoComplete="description"
-                        placeholder="product description"
-                        value={editedProduct.description}
-                        onChange={handleFormInput}
-                    />
+                        <Input.TextArea showCount maxLength={100}
+                            type="text"
+                            name="description"
+                            autoComplete="description"
+                            placeholder="product description"
+                            value={editedProduct.description}
+                            onChange={handleFormInput}
+                        />
                     </Form.Item>
 
                     <Form.Item label="IMAGE URL" required tooltip="This is a required field">
-                    <Input
-                        type="text"
-                        name="image"
-                        autoComplete="image"
-                        placeholder="product image"
-                        value={editedProduct.image}
-                        onChange={handleFormInput}
-                    />
-                   </Form.Item>
-                    
+                        <Input
+                            type="text"
+                            name="image"
+                            autoComplete="image"
+                            placeholder="product image"
+                            value={editedProduct.image}
+                            onChange={handleFormInput}
+                        />
+                    </Form.Item>
+
                 </Form>
-                </Modal>
-                
+            </Modal>
+
         </div>
     );
 }

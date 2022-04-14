@@ -29,10 +29,10 @@ export function CreateProduct({ setAllProducts }) {
 
     try {
       const { data } = await axios.post(`${API_BASE_URL}/products`, newProduct);
-      console.log(data);
       setAllProducts((oldProducts) => {
         return [...oldProducts, data.product];
       });
+      setNewProduct("");
     } catch (error) {
       console.log("Error in updating the product list on the server!", error);
     }

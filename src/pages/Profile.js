@@ -8,13 +8,14 @@ import { CreateProduct } from "../components/CreateProduct";
 import { DeleteAllProductsButtons } from "../components/DeleteAllProductsButtons";
 import { ListAlerts } from "../components/ListAlerts";
 import { Button } from 'antd';
-import {SmileOutlined} from '@ant-design/icons';
+import { SmileOutlined } from '@ant-design/icons';
 
 export function Profile() {
   const navigate = useNavigate();
   const { user, removeUserFromContext, addUserToContext } = useContext(AuthContext);
   const [allProducts, setAllProducts] = useState([]);
   const [alerts, setAlerts] = useState([]);
+  const [userName, setUserName] = useState([]);
 
   useEffect(() => {
     if (!user || typeof user == "undefined") {
@@ -42,6 +43,7 @@ export function Profile() {
         const { data } = await axios.get(`${API_BASE_URL}/products`);
         if (!data.currentDonorProducts) return;
         setAllProducts(data.currentDonorProducts);
+        setUserName(data.currentDonor.name);
       } catch (err) {
         console.log("We got an error");
         console.error(err);
@@ -94,18 +96,19 @@ export function Profile() {
   return (
     <div>
       <div className="profileHead">
-        {user && <h2 className="profTitle">Welcome, {user.email} <SmileOutlined/></h2>}
+        {user && <h2 className="profTitle">Welcome, {userName} <SmileOutlined /></h2>}
         <Button className="profLogOut btnStyle" type="primary" onClick={logout}>
           Logout
         </Button>
       </div>
-      
+   
     
       
       <div className="profSubTitleDiv"> 
       <h2 className="profSubTitle">Your Products</h2> 
+
       </div>
-      
+
 
       <div className="productsListProfile">
 

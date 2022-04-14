@@ -25,7 +25,7 @@ export function LoginForm({
 
     return (
         <div className="login-form-container">
-            <Row type="flex" justify="center" align="middle" style={{ minHeight: '90vh' }}>
+            <Row type="flex" justify="center" align="middle" style={{ minHeight: '80vh' }}>
                 <Col span={10} >
                     <h1 className="login-h1">Login</h1>
                     <Form
