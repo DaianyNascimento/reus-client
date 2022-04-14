@@ -47,8 +47,8 @@ export function SignupForm({
                             ]}
                         >
                             <Select labelInValue onChange={handleFormState}>
-                                <Select.Option name="role" value="donor">Donor</Select.Option>
-                                <Select.Option name="role" value="donee">Donee</Select.Option>
+                                <Select.Option name="role" value="donor">donor</Select.Option>
+                                <Select.Option name="role" value="donee">donee</Select.Option>
                             </Select>
                         </Form.Item>
                         <Form.Item
