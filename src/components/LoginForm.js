@@ -8,6 +8,7 @@ export function LoginForm({
     error = null,
 }) {
     const [formState, setFormState] = useState({ email: "", password: "", role: "donor" });
+    const [form] = Form.useForm();
 
     const handleFormState = (event) => {
         if (event.label === 'donor' || event.label === 'donee') {
@@ -31,6 +32,8 @@ export function LoginForm({
                         name="normal_login"
                         className="login-form"
                         initialValues={{ remember: true, }}
+                        form={form}
+                        layout="vertical"
                     >
                         {error && <p style={{ color: "red" }}>{error.message}</p>}
                         <Form.Item
