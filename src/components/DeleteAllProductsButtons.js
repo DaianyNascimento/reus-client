@@ -16,7 +16,7 @@ export function DeleteAllProductsButtons({
   };
   return (
     <div>
-      <Button type="primary" onClick={deleteAll}>Delete All!</Button>
+      <Button className="btnStyle createBtn1" type="primary" onClick={deleteAll}>Delete All!</Button>
     </div>
   );
 }

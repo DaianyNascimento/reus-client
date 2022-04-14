@@ -100,13 +100,15 @@ export function Profile() {
         </Button>
       </div>
       
-      <div className="createProdDiv">
-      {<CreateProduct setAllProducts={setAllProducts} />}
+    
+      
+      <div className="profSubTitleDiv"> 
+      <h2 className="profSubTitle">Your Products</h2> 
       </div>
       
 
-      <h2 className="profSubTitle">Your Products</h2>
       <div className="productsListProfile">
+
 
         {allProducts.map((product) => (
           <SingleProduct
@@ -116,16 +118,28 @@ export function Profile() {
             deleteSingleProduct={deleteSingleProduct}
           />
         ))}
+
+        
+      </div>
+     
+
+      <div className="createProdDiv">
+      {<CreateProduct setAllProducts={setAllProducts} />}
       </div>
 
+      
+      <div className="createProdDiv">
       <DeleteAllProductsButtons
+       
         deleteSingleProduct={deleteSingleProduct}
         allProducts={allProducts}
         setAllProducts={setAllProducts}
       />
-
+      </div>
+   
+         
       <div className="alertsProfile">
-        <h2 className="alertsProfile profTitle">Alerts received</h2>
+        <h2 className="alertsProfile">Alerts received</h2>
         {alerts.map((alerts) => (
           <ListAlerts key={alerts._id} alerts={alerts} />
         ))}

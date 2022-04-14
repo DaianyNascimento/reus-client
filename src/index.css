@@ -45,7 +45,7 @@ code {
   background-color: #DAB88B !important;
   border-style: none !important;
   font-family: 'Quicksand',sans-serif!important;
-  font-size: 2.6vh !important;
+  font-size: 16px !important;
   font-weight: 600 !important;
 }
 
@@ -74,7 +74,7 @@ code {
 .ant-menu{
   background: #DAB88B !important;
   font-family: 'Quicksand',sans-serif!important;
-  font-size: 3vh !important;
+  font-size: 18px !important;
   font-weight: 800 !important;
 }
 
@@ -89,49 +89,95 @@ code {
   justify-content: space-between;
   flex-wrap: nowrap;
   align-items: center;
-  margin-left: 7%;
-  margin-right: 7%;
-  margin-top: 3%;
+  margin-left: 6%;
+  margin-right: 6%;
+  margin-top: 6%;
 }
 .profTitle {
-  font-size: 5vh;
-  font-family: 'Quicksand',sans-serif;
+  font-size: 4.5vh;
+  font-family: 'Quicksand',sans-serif !important;
   font-weight: 800 !important;
-  color: #DAB88B;
+  color: white ;
+	background: #DAB88B;
+  border: 3px solid white;
+  /*color: #DAB88B;
+  border: 5px solid white;*/
+  padding: 5px 15px;
+}
+
+.profSubTitleDiv{
+  display: flex;
+  justify-content: center;
+  margin: 5%;
 }
 
 .profSubTitle {
-  font-size: 4vh;
-  font-family: 'Quicksand',sans-serif;
-  font-weight: 800 !important;
-  color: #DAB88B;
+  font-size: 6vh;
+  font-family: 'Quicksand',sans-serif !important;
+  font-weight: 900 !important;
+  color: #c9a06a;
+  border: 5px solid white;
+  padding: 5px 15px;
+  width: fit-content;
 }
 
-/* Create Products PROFILE*/
 
-.createProdDiv{
-  display: flex;
-  justify-content: space-between;
-  align-self: center;
-  margin-left: 20vw;
-  margin-top: 3vh;
-}
+
 
 /* ALERTS PROFILE*/
 .alertsProfile{
-  font-family: 'Quicksand',sans-serif;
+  font-family: 'Quicksand',sans-serif !important;
 }
 
 .alertsProfile > div {
-  width: 50vw;
+  width: 45vw;
+  
 }
+
+.alertsProfile > h2 {
+  font-size: 6vh;
+  font-family: 'Quicksand',sans-serif !important;
+  font-weight: 900 !important;
+  color: #c9a06a;
+  border: 5px solid white;
+  padding: 5px 15px;
+  width: fit-content;
+  margin-left: 36%;
+  margin-bottom: 3%;
+}
+
+.ant-alert-success {
+  background-color: #fdf8f4!important;
+  border: 2px solid white!important;
+  margin-left: 57%!important;
+}
+
+.ant-alert-info {
+  background-color: #fdf8f4!important;
+  border: 2px solid white!important;
+  margin-left: 57%!important;
+}
+
+
+.test{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  
+}
+
+
+
+
+
+
 
 /* PRODUCTS CARD*/
 .divCard{
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #FDF6EC !important;
+  background-color: white !important;
   font-family: 'Quicksand',sans-serif;
 }
 
@@ -156,8 +202,16 @@ code {
 .productsListProfile  {
   display: flex;
   flex-wrap: wrap;
+  margin-left: 3%;
+  margin-right: 2%;
 }
 
+.ant-card-head-title{
+  font-family: 'Quicksand',sans-serif !important;
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  color: #c9a06a;
+}
 .ant-card-meta-title{
   font-family: 'Quicksand',sans-serif !important;
   font-size: 20px !important;
@@ -177,15 +231,14 @@ code {
 }
 
 .profLogOut{
-  margin-left: 30px;
-  margin-bottom: 24px;
   font-family: 'Quicksand',sans-serif;
 }
 
 /* BTNS HOME*/
 
 .homeLogOut{
-  margin-left: 30px;
+  margin-top: 2%;
+  margin-right: 5%;
   font-family: 'Quicksand',sans-serif;
 }
 
@@ -198,7 +251,6 @@ code {
 
 .ant-modal-confirm .ant-modal-body{
   background-color: #FDF6EC !important;
-  
 }
 
 .ant-modal-confirm-info .ant-modal-confirm-body > .anticon{
@@ -219,4 +271,34 @@ code {
   font-family: 'Quicksand',sans-serif!important;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
   box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
+}
+
+
+/*CREATE PRODUCT FORM*/
+
+#root > div > div > div > div.createProdDiv > div > form{
+  width: 270% !important;
+}
+
+/* Create Products PROFILE*/
+
+.createProdDiv{
+  display: flex;
+  margin-left: 10%;
+  margin-top: 4%;
+  margin-bottom: 4%;
+}
+.createBtn1{
+  font-size: 18px !important;
+}
+
+.ant-modal-header{
+  background-color: #DAB88B!important;
+  
+}
+
+.ant-modal-title{
+  font-size: 20px !important;
+  color:white !important;
+  font-weight: 800 !important;
 }
